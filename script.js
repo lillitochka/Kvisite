@@ -1,33 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ПЛАВНЫЙ ПЕРЕХОД МЕЖДУ СТРАНИЦАМИ */
-
-  function goTo(page, delay = 0) {
-
-    setTimeout(() => {
-
-      document.body.classList.add("page-leaving");
-
-      setTimeout(() => {
-        window.location.href = page;
-      }, 900);
-
-    }, delay);
-
-  }
-
-
-  /* =========================
-     КОД
-  ========================= */
-
   const inputs = [
     document.getElementById("c1"),
     document.getElementById("c2"),
     document.getElementById("c3")
-  ].filter(Boolean);
+  ];
 
-  if (inputs.length === 3) {
+  if (inputs.length === 3 && inputs.every(Boolean)) {
 
     inputs[0].focus();
 
@@ -53,9 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
               music.play().catch(() => {});
             }
 
-            localStorage.setItem("birthdayMusic", "1");
+            document.body.classList.add("page-leaving");
 
-            goTo("fireworks.html", 300);
+            setTimeout(() => {
+              window.location.href = "fireworks.html";
+            }, 800);
 
           } else {
 
@@ -95,26 +76,55 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* =========================
-     АВТОПЕРЕХОДЫ
-  ========================= */
+  /* САЛЮТ */
 
   if (document.body.classList.contains("fireworks-page")) {
-    goTo("date.html", 4300);
+
+    setTimeout(() => {
+      document.body.classList.add("page-leaving");
+
+      setTimeout(() => {
+        window.location.href = "date.html";
+      }, 900);
+
+    }, 4300);
+
   }
+
+
+  /* ДАТА */
 
   if (document.body.classList.contains("date-page")) {
-    goTo("photos.html", 5000);
+
+    setTimeout(() => {
+      document.body.classList.add("page-leaving");
+
+      setTimeout(() => {
+        window.location.href = "photos.html";
+      }, 900);
+
+    }, 5000);
+
   }
+
+
+  /* ФОТО */
 
   if (document.body.classList.contains("photos-page")) {
-    goTo("gift.html", 6500);
+
+    setTimeout(() => {
+      document.body.classList.add("page-leaving");
+
+      setTimeout(() => {
+        window.location.href = "gift.html";
+      }, 900);
+
+    }, 6500);
+
   }
 
 
-  /* =========================
-     ПОДАРОК
-  ========================= */
+  /* ПОДАРОК */
 
   const gift = document.getElementById("gift");
 
@@ -122,50 +132,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let clicks = 0;
 
-    const giftHint = document.getElementById("giftHint");
-    const giftContent = document.getElementById("giftContent");
-    const ringContent = document.getElementById("ringContent");
+    const hint = document.getElementById("giftHint");
+    const content = document.getElementById("giftContent");
+    const ring = document.getElementById("ringContent");
 
     gift.addEventListener("click", () => {
 
       clicks++;
 
       if (clicks === 1) {
-
         gift.style.transform = "scale(.78)";
         gift.classList.add("opened");
-        giftHint.textContent = "ще один подарунок";
-
+        hint.textContent = "ще один подарунок";
       }
 
       if (clicks === 2) {
-
         gift.style.transform = "scale(.58)";
-        giftHint.textContent = "він стає все меншим";
-
+        hint.textContent = "він стає все меншим";
       }
 
       if (clicks === 3) {
-
         gift.style.transform = "scale(.38)";
-        giftHint.textContent = "ще трошки";
-
+        hint.textContent = "ще трошки";
       }
 
       if (clicks === 4) {
 
         gift.style.transform = "scale(0)";
-        giftHint.style.opacity = "0";
+        hint.style.opacity = "0";
 
         setTimeout(() => {
-
-          giftContent.style.opacity = "0";
-          ringContent.classList.add("show");
-
+          content.style.opacity = "0";
+          ring.classList.add("show");
         }, 600);
 
         setTimeout(() => {
-          goTo("letter.html");
+
+          document.body.classList.add("page-leaving");
+
+          setTimeout(() => {
+            window.location.href = "letter.html";
+          }, 900);
+
         }, 7200);
 
       }
@@ -175,25 +183,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* =========================
-     СВЕЧИ
-  ========================= */
+  /* СВЕЧИ */
 
-  const cakePage = document.querySelector(".cake-page");
+  const cake = document.querySelector(".cake-page");
 
-  if (cakePage) {
+  if (cake) {
 
     let blown = false;
 
-    cakePage.addEventListener("click", () => {
+    cake.addEventListener("click", () => {
 
       if (blown) return;
 
       blown = true;
 
-      const flames = document.querySelectorAll(".flame");
-
-      flames.forEach((flame, index) => {
+      document.querySelectorAll(".flame").forEach((flame, index) => {
 
         setTimeout(() => {
           flame.classList.add("blown");
@@ -208,7 +212,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       setTimeout(() => {
-        goTo("final.html");
+
+        document.body.classList.add("page-leaving");
+
+        setTimeout(() => {
+          window.location.href = "final.html";
+        }, 900);
+
       }, 4000);
 
     });
