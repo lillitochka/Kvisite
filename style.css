@@ -4,61 +4,117 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #ffd9ec;
 }
 
 body {
-  font-family: Georgia, "Times New Roman", serif;
-  background: #ffdfec;
-  color: #54243b;
-  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+  color: #24151d;
+  touch-action: manipulation;
 }
 
-button,
-input {
-  font: inherit;
-}
-
-.scene {
-  min-height: 100vh;
-  width: 100%;
+.site {
   position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 20%, #fff 0 4%, transparent 5%),
+    radial-gradient(circle at 80% 70%, #fff 0 3%, transparent 4%),
+    linear-gradient(135deg, #ffd9ec, #ffeef7 45%, #dff7ff);
 }
 
 
 /* =========================
-   ЛЕПЕСТКИ
+   СЦЕНЫ
 ========================= */
 
-#petals {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1000;
-  overflow: hidden;
-}
-
-.petal {
+.scene {
   position: absolute;
-  top: -30px;
-  width: 12px;
-  height: 18px;
-  background: #ff8fbd;
-  border-radius: 80% 20% 80% 20%;
-  opacity: .75;
-  animation: fall linear forwards;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: scale(1.04);
+
+  transition:
+    opacity 1s ease,
+    transform 1.2s ease,
+    visibility 1s ease;
 }
 
-@keyframes fall {
-  0% {
-    transform: translateY(-30px) rotate(0deg);
-  }
+.scene.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: scale(1);
+}
 
-  100% {
-    transform: translateY(110vh) translateX(80px) rotate(600deg);
-  }
+
+/* =========================
+   ДЕКОР
+========================= */
+
+.decor {
+  position: fixed;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.decor img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.decor-rainbow {
+  top: -20px;
+  left: 50%;
+  width: 130px;
+  transform: translateX(-50%) rotate(-4deg);
+}
+
+.decor-pinkie {
+  left: -5px;
+  bottom: 15px;
+  width: 110px;
+  transform: rotate(-8deg);
+}
+
+.decor-balloons {
+  right: -10px;
+  top: 30%;
+  width: 115px;
+  transform: rotate(5deg);
+}
+
+.decor-sponge {
+  left: -10px;
+  top: 20%;
+  width: 105px;
+  transform: rotate(-7deg);
+}
+
+.decor-cats {
+  right: -5px;
+  bottom: 5px;
+  width: 120px;
+  transform: rotate(8deg);
 }
 
 
@@ -66,124 +122,99 @@ input {
    КОД
 ========================= */
 
-.code-scene {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background:
-    radial-gradient(circle at 15% 20%, #ff9bc5 0 3px, transparent 4px),
-    radial-gradient(circle at 85% 70%, #ffd55e 0 4px, transparent 5px),
-    linear-gradient(135deg, #ff4f96, #ff83b7 55%, #ffb1d0);
-  transition: opacity 1s, transform 1s;
-}
+.code-card {
+  width: min(88%, 430px);
+  padding: 45px 25px 38px;
 
-.code-scene.code-complete {
-  opacity: 0;
-  transform: scale(1.08);
-  pointer-events: none;
-}
-
-.code-box {
   text-align: center;
-  width: 460px;
-  padding: 55px 45px;
-  background: rgba(255, 248, 244, .95);
+
+  background: rgba(255,255,255,.82);
+  border: 3px solid #fff;
   border-radius: 35px;
-  box-shadow: 0 30px 80px rgba(106, 21, 57, .25);
-  position: relative;
-  z-index: 3;
+
+  box-shadow:
+    0 20px 60px rgba(255,80,160,.18),
+    0 5px 20px rgba(0,0,0,.08);
+
+  animation: cardAppear 1s ease;
 }
 
-.tiny-title,
-.small-label {
+.code-pusheen {
+  width: 125px;
+  max-height: 130px;
+  object-fit: contain;
+  margin-bottom: 10px;
+
+  animation: floating 3s ease-in-out infinite;
+}
+
+.small-title,
+.date-small,
+.gift-title {
   text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 12px;
-  color: #b45c7e;
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #ff4fa3;
 }
 
-.code-box h1 {
-  font-size: 55px;
-  margin: 12px 0 8px;
-  color: #702746;
+.code-card h1 {
+  margin-top: 8px;
+  font-size: clamp(34px, 9vw, 54px);
+  font-weight: 900;
 }
 
-.code-subtitle {
-  color: #a16a7f;
-  margin-bottom: 35px;
+.code-hint {
+  margin-top: 8px;
+  color: #8b6878;
 }
 
 .code-inputs {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 12px;
+  margin-top: 30px;
 }
 
-.code-input {
-  width: 75px;
-  height: 90px;
-  border: 2px solid #e5a2ba;
+.code-inputs input {
+  width: 62px;
+  height: 72px;
+
+  border: 3px solid #ff9bca;
   border-radius: 20px;
-  background: white;
-  text-align: center;
-  font-size: 42px;
-  color: #9c315e;
+
+  background: #fff;
   outline: none;
-  transition: .25s;
+
+  text-align: center;
+  font-size: 32px;
+  font-weight: 900;
+
+  color: #ff4fa3;
+
+  transition: .2s;
 }
 
-.code-input:focus {
-  border-color: #ff4f96;
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(255, 79, 150, .2);
+.code-inputs input:focus {
+  border-color: #ff4fa3;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(255,79,163,.2);
 }
 
-.code-input.wrong {
-  border-color: #d93131;
-  animation: shake .35s;
+.wrong {
+  height: 18px;
+  margin-top: 13px;
+  opacity: 0;
+  color: #e34b79;
+  font-size: 13px;
 }
 
-.code-error {
-  height: 20px;
-  margin-top: 20px;
-  color: #c72f52;
-  font-size: 14px;
+.wrong.show {
+  opacity: 1;
 }
 
-.code-decoration {
-  position: absolute;
-  border-radius: 50%;
-  opacity: .5;
-}
-
-.decoration-one {
-  width: 180px;
-  height: 180px;
-  border: 25px solid #ffd55e;
-  left: 8%;
-  top: 15%;
-}
-
-.decoration-two {
-  width: 100px;
-  height: 100px;
-  border: 18px solid white;
-  right: 10%;
-  bottom: 15%;
-}
-
-@keyframes shake {
-  25% {
-    transform: translateX(-7px);
-  }
-
-  50% {
-    transform: translateX(7px);
-  }
-
-  75% {
-    transform: translateX(-5px);
-  }
+.shake {
+  animation: shake .35s ease;
 }
 
 
@@ -191,103 +222,75 @@ input {
    САЛЮТ
 ========================= */
 
-.fireworks-scene {
-  background: #291a48;
-  opacity: 0;
-  pointer-events: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.fireworks-scene.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.fireworks {
-  position: absolute;
-  inset: 0;
-}
-
-.firework {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--firework-color);
-  box-shadow:
-    0 -70px 0 var(--firework-color),
-    0 70px 0 var(--firework-color),
-    70px 0 0 var(--firework-color),
-    -70px 0 0 var(--firework-color),
-    50px 50px 0 var(--firework-color),
-    -50px -50px 0 var(--firework-color),
-    50px -50px 0 var(--firework-color),
-    -50px 50px 0 var(--firework-color);
-  animation: explode 1.5s ease-out forwards;
-}
-
-@keyframes explode {
-  0% {
-    transform: scale(.1);
-    opacity: 1;
-  }
-
-  70% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(1.4);
-    opacity: 0;
-  }
-}
-
-.firework-text {
-  position: relative;
-  z-index: 5;
+#fireworksScene {
+  background:
+    radial-gradient(circle at center, #26315e 0, #17152f 55%, #090817 100%);
   color: white;
-  font-size: 28px;
-  text-align: center;
-  opacity: 0;
-  animation: appear 1.5s 1.5s forwards;
 }
 
-.birthday-picture {
+.birthday-img {
   position: absolute;
-  z-index: 4;
-}
-
-.birthday-picture img {
-  width: 150px;
-  max-height: 160px;
+  width: min(75%, 390px);
+  max-height: 170px;
   object-fit: contain;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: birthdayFloat 3s ease-in-out infinite;
 }
 
-.birthday-picture-pusheen {
-  top: 18%;
+.pusheen-big {
+  position: absolute;
+  width: 130px;
+  top: 6%;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.top-rainbow {
+#fireworksScene h2 {
   position: absolute;
-  top: 6%;
-  left: 8%;
-  width: 180px;
-  max-height: 150px;
-  object-fit: contain;
+  bottom: 17%;
+  font-size: 28px;
+  animation: pulse 1.5s ease-in-out infinite;
 }
 
-.side-balloons {
+.firework {
   position: absolute;
-  right: 5%;
-  bottom: 10%;
-  width: 210px;
-  max-height: 240px;
-  object-fit: contain;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: white;
+  opacity: 0;
+}
+
+.f1 {
+  left: 18%;
+  top: 30%;
+  animation: boom 2.2s infinite .1s;
+}
+
+.f2 {
+  right: 20%;
+  top: 25%;
+  animation: boom 2.2s infinite .5s;
+}
+
+.f3 {
+  left: 32%;
+  top: 55%;
+  animation: boom 2.4s infinite .8s;
+}
+
+.f4 {
+  right: 33%;
+  top: 58%;
+  animation: boom 2.1s infinite 1s;
+}
+
+.f5 {
+  left: 50%;
+  top: 20%;
+  animation: boom 2.3s infinite 1.3s;
 }
 
 
@@ -295,161 +298,100 @@ input {
    ДАТА
 ========================= */
 
-.date-scene {
-  background: #fff1e7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .date-content {
+  width: min(90%, 450px);
   text-align: center;
-  position: relative;
-  z-index: 3;
 }
 
-.date-content h2 {
-  font-size: 46px;
-  line-height: 1.15;
-  margin: 18px 0 30px;
-  color: #71304a;
+.date-content h1 {
+  margin: 12px 0 22px;
+  font-size: clamp(25px, 7vw, 42px);
+  line-height: 1.08;
+  font-weight: 900;
+}
+
+.top-picture {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  width: 100px;
+  max-height: 80px;
+  object-fit: contain;
+  transform: translateX(-50%);
 }
 
 .calendar {
-  width: 520px;
-  background: #fffaf6;
+  width: min(100%, 370px);
+  margin: auto;
+  padding: 18px;
+
   border-radius: 25px;
-  padding: 28px;
-  box-shadow: 0 25px 70px rgba(111, 53, 65, .16);
+  background: rgba(255,255,255,.9);
+
+  box-shadow: 0 15px 50px rgba(255,90,160,.2);
 }
 
-.calendar-header {
+.calendar-head {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  padding: 0 5px 12px;
+
+  color: #ff4fa3;
+  font-weight: 900;
+}
+
+.calendar-head span {
   font-size: 20px;
-  color: #8b3558;
-  margin-bottom: 22px;
+}
+
+.calendar-head b {
+  font-size: 14px;
 }
 
 .weekdays,
 .days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+  gap: 5px;
 }
 
 .weekdays {
-  font-size: 11px;
-  color: #b6788f;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  color: #a17a8c;
+  font-size: 10px;
+  font-weight: 900;
 }
 
-.days span {
-  height: 42px;
+.days span,
+.days i,
+.days strong {
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+
+  height: 31px;
+
+  font-size: 12px;
+  font-style: normal;
 }
 
-.birthday-day {
-  color: white !important;
-  font-weight: bold;
+.days strong {
+  color: white;
   z-index: 1;
 }
 
-.birthday-day::before {
+.days strong::before {
   content: "";
   position: absolute;
-  width: 42px;
-  height: 42px;
+  width: 34px;
+  height: 34px;
+  border: 3px solid #ff4d72;
   border-radius: 50%;
-  background: #e54e69;
   z-index: -1;
-}
-
-.date-caption {
-  margin-top: 20px;
-  color: #a35b75;
-}
-
-.date-top-picture {
-  position: absolute;
-  top: 5%;
-  right: 9%;
-}
-
-.date-top-picture img {
-  width: 170px;
-  max-height: 160px;
-  object-fit: contain;
-}
-
-
-/* =========================
-   HAPPY BIRTHDAY
-========================= */
-
-.happy-scene {
-  background: linear-gradient(135deg, #64d9e8, #ff78ae);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.happy-card {
-  width: 650px;
-  padding: 65px;
-  text-align: center;
-  background: rgba(255, 250, 247, .96);
-  border-radius: 35px;
-  box-shadow: 0 30px 80px rgba(62, 33, 77, .25);
-}
-
-.happy-card p {
-  font-size: 24px;
-  color: #d33c75;
-  margin-bottom: 15px;
-}
-
-.happy-card h2 {
-  font-size: 50px;
-  color: #642645;
-  margin-bottom: 20px;
-}
-
-.happy-card span {
-  font-size: 18px;
-  color: #956178;
-}
-
-.happy-title-image {
-  position: absolute;
-  top: 7%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 330px;
-  max-height: 150px;
-  object-fit: contain;
-}
-
-.hello-kitty {
-  position: absolute;
-  top: 23%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 130px;
-  max-height: 130px;
-  object-fit: contain;
-}
-
-.pinkie-pie {
-  position: absolute;
-  right: 6%;
-  bottom: 7%;
-  width: 170px;
-  max-height: 190px;
-  object-fit: contain;
 }
 
 
@@ -457,624 +399,439 @@ input {
    ФОТО
 ========================= */
 
-.photos-scene {
-  background: #ffd9e8;
+#photosScene {
+  flex-direction: column;
 }
 
-.photos-heading {
-  position: absolute;
-  left: 8%;
-  top: 14%;
+#photosScene h1 {
+  position: relative;
   z-index: 5;
+  margin-bottom: 15px;
+
+  font-size: clamp(32px, 9vw, 55px);
+  font-weight: 900;
+  color: #ff4fa3;
+
+  animation: titlePop .8s ease;
 }
 
-.photos-heading span {
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 12px;
-  color: #a75072;
+.hello-kitty {
+  width: 100px;
+  max-height: 90px;
+  object-fit: contain;
+  margin-bottom: 5px;
+
+  animation: floating 3s infinite;
 }
 
-.photos-heading h2 {
-  font-size: 52px;
-  margin-top: 12px;
-  color: #682744;
+.photo-collage {
+  position: relative;
+
+  width: min(92vw, 570px);
+  height: min(64vh, 500px);
 }
 
-.photo-wall {
+.photo-collage img {
   position: absolute;
-  width: 900px;
-  height: 620px;
-  left: 57%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
 
-.photo {
-  position: absolute;
-  background: #fff;
-  padding: 12px 12px 35px;
-  box-shadow: 0 20px 45px rgba(89, 38, 62, .2);
-  transition: .45s ease;
-}
+  width: 31%;
+  height: 44%;
 
-.photo img {
-  display: block;
-  width: 100%;
-  height: 100%;
   object-fit: cover;
+
+  border: 7px solid white;
+  border-bottom-width: 18px;
+
+  box-shadow: 0 12px 30px rgba(0,0,0,.17);
+
+  transition: .5s;
 }
 
-.photo:hover {
-  transform: rotate(0deg) scale(1.08) !important;
-  z-index: 20;
-}
-
-.photo-1 {
-  width: 270px;
-  height: 300px;
-  left: 0;
-  top: 80px;
+.photo-collage img:nth-child(1) {
+  left: 2%;
+  top: 3%;
   transform: rotate(-7deg);
 }
 
-.photo-2 {
-  width: 250px;
-  height: 285px;
-  left: 210px;
+.photo-collage img:nth-child(2) {
+  left: 35%;
   top: 0;
-  transform: rotate(5deg);
+  transform: rotate(4deg);
 }
 
-.photo-3 {
-  width: 270px;
-  height: 305px;
-  left: 400px;
-  top: 70px;
-  transform: rotate(-3deg);
+.photo-collage img:nth-child(3) {
+  right: 2%;
+  top: 5%;
+  transform: rotate(8deg);
 }
 
-.photo-4 {
-  width: 250px;
-  height: 280px;
-  left: 610px;
-  top: 0;
-  transform: rotate(7deg);
+.photo-collage img:nth-child(4) {
+  left: 8%;
+  bottom: 2%;
+  transform: rotate(6deg);
 }
 
-.photo-5 {
-  width: 255px;
-  height: 290px;
-  left: 180px;
-  top: 315px;
-  transform: rotate(-4deg);
-}
-
-.photo-6 {
-  width: 260px;
-  height: 300px;
-  left: 460px;
-  top: 315px;
-  transform: rotate(5deg);
-}
-
-.cats-corner {
-  position: absolute;
-  left: 4%;
-  bottom: 6%;
-  width: 170px;
-  max-height: 160px;
-  object-fit: contain;
-}
-
-
-/* =========================
-   ТЕКСТ
-========================= */
-
-.letter-scene {
-  background: #f7e7d9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.letter {
-  width: min(900px, 75vw);
-  max-height: 82vh;
-  overflow: auto;
-  background: #fffaf2;
-  padding: 55px 75px;
-  border-radius: 8px;
-  box-shadow: 0 30px 70px rgba(83, 43, 48, .2);
-  position: relative;
-  z-index: 4;
-}
-
-.letter-top {
-  display: flex;
-  justify-content: space-between;
-  color: #b77882;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-size: 11px;
-  margin-bottom: 30px;
-}
-
-.letter h2 {
-  font-size: 42px;
-  color: #713049;
-  margin-bottom: 30px;
-}
-
-.letter-text {
-  color: #704957;
-  font-size: 17px;
-  line-height: 1.75;
-}
-
-.letter-text p {
-  margin-bottom: 20px;
-}
-
-.final-letter {
-  color: #a63262;
-  font-weight: bold;
-}
-
-.spongebob {
-  position: absolute;
-  right: 4%;
-  top: 8%;
-  width: 170px;
-  max-height: 180px;
-  object-fit: contain;
-}
-
-
-/* =========================
-   ПОДАРКИ
-========================= */
-
-.presents-scene {
-  background: linear-gradient(135deg, #ffbfd7, #f6d7b8);
-  text-align: center;
-  padding-top: 9vh;
-}
-
-.present-title span {
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 11px;
-  color: #a04f70;
-}
-
-.present-title h2 {
-  font-size: 50px;
-  color: #6d2949;
-  margin-top: 12px;
-}
-
-.present-stage {
-  position: relative;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.present-box {
-  position: relative;
-  width: 270px;
-  height: 220px;
-  cursor: pointer;
-  transition: .8s ease;
-}
-
-.present-body {
-  position: absolute;
+.photo-collage img:nth-child(5) {
+  left: 35%;
   bottom: 0;
-  left: 0;
-  width: 270px;
-  height: 170px;
-  background: #e74e82;
-  border-radius: 5px 5px 20px 20px;
-  box-shadow: 0 30px 50px rgba(111, 35, 67, .2);
+  transform: rotate(-5deg);
 }
 
-.present-lid {
-  position: absolute;
-  top: 30px;
-  left: -12px;
-  width: 294px;
-  height: 55px;
-  background: #f15d8e;
-  border-radius: 10px;
-  z-index: 3;
-  transition: .8s ease;
+.photo-collage img:nth-child(6) {
+  right: 5%;
+  bottom: 4%;
+  transform: rotate(-8deg);
 }
 
-.ribbon-horizontal {
-  position: absolute;
-  width: 100%;
-  height: 14px;
-  top: 20px;
-  background: #ffd86d;
+
+/* =========================
+   ПОДАРУНОК
+========================= */
+
+.gift-scene {
+  flex-direction: column;
+  text-align: center;
 }
 
-.ribbon-vertical {
-  position: absolute;
-  width: 35px;
-  height: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #ffd86d;
-}
+.gift-wrap {
+  position: relative;
 
-.present-box.opening .present-lid {
-  transform: translateY(-100px) rotate(-4deg);
-}
+  width: 180px;
+  height: 180px;
 
-.present-box.smaller-1 {
-  transform: scale(.82);
-}
+  margin-top: 35px;
 
-.present-box.smaller-2 {
-  transform: scale(.64);
-}
-
-.present-box.smaller-3 {
-  transform: scale(.46);
-}
-
-.present-box.smaller-4 {
-  transform: scale(.28);
-}
-
-.present-box.hidden {
-  opacity: 0;
-  transform: scale(.1);
-  pointer-events: none;
-}
-
-.present-message {
-  position: absolute;
-  bottom: 30px;
-  color: #843351;
-  font-size: 22px;
-  opacity: 0;
-  transition: .4s;
-}
-
-.present-message.show {
-  opacity: 1;
-}
-
-.present-button {
-  border: none;
-  background: #7e3151;
-  color: white;
-  padding: 16px 35px;
-  border-radius: 30px;
   cursor: pointer;
-  font-size: 16px;
-  transition: .3s;
+
+  transition:
+    transform .8s cubic-bezier(.2,.8,.2,1);
 }
 
-.present-button:hover {
-  transform: scale(1.06);
-  background: #a13c65;
+.gift-box {
+  position: absolute;
+
+  width: 150px;
+  height: 120px;
+
+  left: 15px;
+  bottom: 10px;
+
+  border-radius: 8px;
+
+  background: #ff4fa3;
+
+  box-shadow: 0 15px 30px rgba(255,79,163,.3);
 }
 
-.present-button.hidden {
-  opacity: 0;
-  pointer-events: none;
+.gift-lid {
+  position: absolute;
+
+  z-index: 3;
+
+  width: 175px;
+  height: 35px;
+
+  left: 2px;
+  top: 30px;
+
+  border-radius: 8px;
+
+  background: #ff78b8;
+
+  transition: .6s;
+}
+
+.gift-wrap.opened .gift-lid {
+  transform: translateY(-25px) rotate(-4deg);
+}
+
+.ribbon-v {
+  position: absolute;
+
+  width: 28px;
+  height: 100%;
+
+  left: 61px;
+
+  background: #ffe66d;
+}
+
+.ribbon-h {
+  position: absolute;
+
+  width: 100%;
+  height: 23px;
+
+  top: 40px;
+
+  background: #ffe66d;
+}
+
+.gift-hint {
+  margin-top: 20px;
+  color: #87596d;
+  font-weight: 700;
+}
+
+.gift-sponge {
+  position: absolute;
+  left: 10px;
+  bottom: 20px;
+  width: 100px;
 }
 
 .ring-reveal {
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: rgba(255, 219, 231, .96);
+
+  width: 90%;
+  max-width: 430px;
+
+  text-align: center;
+
   opacity: 0;
+  transform: scale(.5);
+
   pointer-events: none;
-  transition: 1.2s;
-  z-index: 20;
+
+  transition: 1s ease;
 }
 
 .ring-reveal.show {
   opacity: 1;
-  pointer-events: auto;
+  transform: scale(1);
 }
 
-.ring {
-  width: 180px;
-  height: 180px;
-  position: relative;
-  animation: ringAppear 1.2s ease;
-}
+.ring-placeholder {
+  font-size: 90px;
 
-.ring-band {
-  position: absolute;
-  width: 110px;
-  height: 110px;
-  border: 13px solid #d5a63e;
-  border-radius: 50%;
-  left: 35px;
-  top: 35px;
-}
-
-.ring-stone {
-  position: absolute;
-  width: 65px;
-  height: 65px;
-  background: #fff;
-  transform: rotate(45deg);
-  left: 58px;
-  top: 7px;
-  border-radius: 12px;
-  box-shadow: 0 0 35px #fff;
+  animation:
+    ringFloat 2s ease-in-out infinite;
 }
 
 .ring-reveal h2 {
-  font-size: 43px;
-  color: #712b4b;
-  margin: 5px 0 18px;
+  font-size: 30px;
+  color: #ff4fa3;
 }
 
 .ring-reveal p {
-  max-width: 570px;
-  font-size: 18px;
-  line-height: 1.6;
-  color: #825268;
+  margin-top: 12px;
+  line-height: 1.45;
+  font-size: 16px;
 }
 
-.ring-reveal strong {
-  margin-top: 20px;
-  color: #9c3d63;
-  font-size: 21px;
+.bouquet-placeholder {
+  margin-top: 15px;
+  font-size: 65px;
 }
 
-.bouquet {
-  position: relative;
-  width: 200px;
-  height: 70px;
-  margin-bottom: 5px;
-}
-
-.flower {
-  position: absolute;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: #ff78aa;
-}
-
-.flower::before,
-.flower::after {
-  content: "";
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #ff9ec3;
-}
-
-.flower::before {
-  left: -10px;
-  top: 7px;
-}
-
-.flower::after {
-  right: -10px;
-  top: 7px;
-}
-
-.flower-a {
-  left: 70px;
-  top: 10px;
-}
-
-.flower-b {
-  left: 25px;
-  top: 20px;
-}
-
-.flower-c {
-  right: 30px;
-  top: 20px;
-}
-
-.flower-d {
-  left: 95px;
-  top: 30px;
-}
-
-.stem {
-  position: absolute;
-  width: 4px;
-  height: 55px;
-  background: #66956c;
-  bottom: -40px;
-  transform-origin: top;
-}
-
-.stem-a {
-  left: 88px;
-  transform: rotate(-12deg);
-}
-
-.stem-b {
-  left: 53px;
-  transform: rotate(-25deg);
-}
-
-.stem-c {
-  right: 55px;
-  transform: rotate(20deg);
-}
-
-@keyframes ringAppear {
-  from {
-    transform: scale(.2) rotate(-30deg);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1) rotate(0);
-    opacity: 1;
-  }
+.thanks {
+  color: #ff4fa3;
+  font-weight: 800;
 }
 
 
 /* =========================
-   ТОРТ
+   ЛИСТ
+========================= */
+
+.letter-scene {
+  padding: 25px;
+}
+
+.letter {
+  width: min(90%, 650px);
+  max-height: 88vh;
+
+  overflow: hidden;
+
+  padding: 28px 25px;
+
+  background: rgba(255,255,255,.94);
+
+  border-radius: 30px;
+
+  box-shadow:
+    0 20px 60px rgba(255,70,150,.2);
+
+  text-align: left;
+}
+
+.letter h1 {
+  margin-bottom: 18px;
+
+  text-align: center;
+
+  font-size: clamp(25px, 7vw, 39px);
+  line-height: 1.05;
+
+  color: #ff4fa3;
+}
+
+.letter-text {
+  font-size: clamp(12px, 3.2vw, 15px);
+  line-height: 1.45;
+
+  max-height: 66vh;
+  overflow: hidden;
+}
+
+.letter-text p {
+  margin-bottom: 12px;
+}
+
+.letter-end {
+  text-align: center;
+  color: #ff4fa3;
+  font-weight: 800;
+}
+
+.letter-kitty {
+  position: absolute;
+
+  top: 15px;
+  right: 20px;
+
+  width: 90px;
+}
+
+
+/* =========================
+   ТОРТИК
 ========================= */
 
 .cake-scene {
-  background: #4a2a45;
-  color: white;
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.cake-content {
-  text-align: center;
-  position: relative;
-  z-index: 5;
-  margin-bottom: 50px;
-}
-
-.cake-content h2 {
-  font-size: 55px;
-  margin: 12px 0;
-}
-
-.candle-hint {
-  color: #f7b5ce;
-  font-size: 18px;
-  transition: .5s;
 }
 
 .cake {
   position: relative;
-  width: 450px;
-  height: 270px;
-  cursor: pointer;
+
+  width: 270px;
+  height: 230px;
+
+  margin-top: 30px;
 }
 
-.cake-bottom,
-.cake-middle,
+.cake-body {
+  position: absolute;
+
+  left: 20px;
+  bottom: 20px;
+
+  width: 230px;
+  height: 105px;
+
+  border-radius: 15px 15px 25px 25px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #ff8ebf 0,
+      #ff8ebf 30px,
+      #ffb9d7 30px,
+      #ffb9d7 60px
+    );
+
+  box-shadow: 0 15px 25px rgba(255,79,163,.2);
+}
+
 .cake-top {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 18px;
+
+  left: 15px;
+  bottom: 105px;
+
+  width: 240px;
+  height: 55px;
+
+  border-radius: 50%;
+
+  background: #fff4fa;
+
+  border: 6px solid #ff9aca;
+
+  z-index: 2;
 }
 
-.cake-bottom {
-  bottom: 0;
-  width: 450px;
-  height: 100px;
-  background: #e65e89;
-}
+.candles {
+  position: absolute;
 
-.cake-middle {
-  bottom: 80px;
-  width: 390px;
-  height: 85px;
-  background: #ff91b1;
-}
+  z-index: 4;
 
-.cake-top {
+  left: 48px;
   bottom: 145px;
-  width: 330px;
-  height: 75px;
-  background: #ffd1dd;
+
+  width: 175px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .candle {
-  position: absolute;
-  width: 25px;
-  height: 100px;
-  background: #ffe06a;
-  border-radius: 8px 8px 3px 3px;
-  bottom: 210px;
-  z-index: 5;
-  transition: .8s ease;
-}
+  position: relative;
 
-.candle-one {
-  left: 110px;
-}
+  width: 17px;
+  height: 55px;
 
-.candle-two {
-  left: 213px;
-}
+  border-radius: 5px;
 
-.candle-three {
-  right: 110px;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      #fff 0,
+      #fff 7px,
+      #ff65ad 7px,
+      #ff65ad 14px
+    );
 }
 
 .flame {
   position: absolute;
-  width: 22px;
-  height: 32px;
-  background: #ff9c35;
+
+  width: 15px;
+  height: 22px;
+
+  left: 1px;
+  top: -22px;
+
   border-radius: 60% 40% 60% 40%;
+
+  background: #ffd95a;
+
   transform: rotate(45deg);
-  top: -28px;
-  left: 2px;
-  box-shadow: 0 0 20px #ffbf5c;
+
+  box-shadow: 0 0 20px #ffd95a;
+
   animation: flame 1s infinite alternate;
 }
 
-.candle.blown {
+.flame.blown {
   opacity: 0;
-  transform: translateY(-30px);
+  transform:
+    translateY(-20px)
+    scale(.2)
+    rotate(45deg);
+
+  transition: .9s;
 }
 
-@keyframes flame {
-  from {
-    transform: rotate(45deg) scale(.9);
-  }
+.cake-scene h2 {
+  margin-top: 25px;
 
-  to {
-    transform: rotate(45deg) scale(1.1);
-  }
+  font-size: clamp(20px, 6vw, 30px);
+  color: #ff4fa3;
+
+  animation: pulse 1.6s infinite;
 }
 
-.wish-text {
+.cake-balloons {
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: rgba(44, 21, 43, .93);
-  opacity: 0;
-  pointer-events: none;
-  transition: 1.5s;
-  z-index: 30;
-}
 
-.wish-text.show {
-  opacity: 1;
-}
+  right: -5px;
+  top: 20px;
 
-.wish-text span {
-  font-size: 35px;
-  color: #ff9fc0;
-  margin-bottom: 20px;
-}
-
-.wish-text h2 {
-  font-size: 42px;
+  width: 110px;
 }
 
 
@@ -1083,210 +840,239 @@ input {
 ========================= */
 
 .final-scene {
-  background: linear-gradient(135deg, #ff5d9b, #a45bd3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-}
-
-.final-content {
+  flex-direction: column;
   text-align: center;
-  position: relative;
-  z-index: 5;
+
+  background:
+    radial-gradient(circle at 50% 30%, #fff 0, #ffe1ef 40%, #ffc2df 100%);
 }
 
-.final-content p {
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  font-size: 12px;
-  opacity: .85;
-  margin-bottom: 20px;
+.final-pinkie {
+  width: 115px;
+  margin-bottom: 10px;
+
+  animation: floating 3s infinite;
 }
 
-.final-content h1 {
-  font-size: 75px;
-  line-height: 1;
-}
-
-.final-line {
-  width: 100px;
-  height: 2px;
-  background: white;
-  margin: 35px auto;
-}
-
-.final-content h2 {
-  font-size: 24px;
-  font-weight: normal;
-}
-
-.final-content > span {
-  display: block;
-  margin-top: 30px;
-  font-size: 35px;
-}
-
-.final-balloons {
-  position: absolute;
-  right: 5%;
-  top: 7%;
-  width: 190px;
-  max-height: 210px;
+.final-birthday {
+  width: min(75%, 400px);
+  max-height: 130px;
   object-fit: contain;
+
+  margin-bottom: 15px;
 }
 
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
+.final-scene h1 {
+  font-size: clamp(38px, 10vw, 70px);
+  line-height: .98;
+  color: #ff4fa3;
+  font-weight: 900;
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  animation: titlePop 1s ease;
+}
+
+.final-scene p {
+  margin-top: 15px;
+
+  font-size: 23px;
+  font-weight: 800;
+
+  animation: pulse 2s infinite;
 }
 
 
 /* =========================
-   АДАПТАЦИЯ
+   АНИМАЦИИ
 ========================= */
 
-@media (max-width: 1000px) {
-
-  .photo-wall {
-    left: 60%;
-    transform: translate(-50%, -50%) scale(.8);
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(.95);
   }
 
-  .photos-heading {
-    left: 5%;
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes floating {
+  0%,100% {
+    transform: translateY(0);
   }
 
-  .photos-heading h2 {
-    font-size: 40px;
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes birthdayFloat {
+  0%,100% {
+    transform: translateX(-50%) rotate(-2deg);
   }
 
-  .letter {
-    width: 86vw;
-    padding: 45px;
+  50% {
+    transform: translateX(-50%) rotate(2deg) translateY(-8px);
+  }
+}
+
+@keyframes titlePop {
+  from {
+    opacity: 0;
+    transform: scale(.7);
   }
 
-  .spongebob {
-    width: 120px;
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%,100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes shake {
+  0%,100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-8px);
+  }
+
+  75% {
+    transform: translateX(8px);
+  }
+}
+
+@keyframes ringFloat {
+  0%,100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(5deg);
+  }
+}
+
+@keyframes flame {
+  from {
+    transform: rotate(42deg) scale(1);
+  }
+
+  to {
+    transform: rotate(48deg) scale(1.12);
+  }
+}
+
+@keyframes boom {
+
+  0% {
+    opacity: 0;
+    transform: scale(.1);
+    box-shadow: none;
+  }
+
+  20% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow:
+      0 -80px 0 white,
+      57px -57px 0 #ff75bd,
+      80px 0 0 white,
+      57px 57px 0 #ffe36d,
+      0 80px 0 white,
+      -57px 57px 0 #8fe6ff,
+      -80px 0 0 white,
+      -57px -57px 0 #ff75bd;
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
   }
 
 }
 
-@media (max-width: 700px) {
 
-  .code-box {
-    width: 88vw;
-    padding: 40px 20px;
+/* =========================
+   МОБИЛЬНЫЕ
+========================= */
+
+@media (max-width: 600px) {
+
+  .decor-rainbow {
+    width: 95px;
   }
 
-  .code-box h1 {
-    font-size: 42px;
+  .decor-pinkie {
+    width: 80px;
   }
 
-  .code-input {
-    width: 60px;
-    height: 75px;
+  .decor-balloons {
+    width: 85px;
   }
 
-  .date-content h2 {
-    font-size: 31px;
+  .decor-sponge {
+    width: 75px;
   }
 
-  .calendar {
-    width: 90vw;
-    padding: 18px;
+  .decor-cats {
+    width: 85px;
   }
 
-  .happy-card {
-    width: 88vw;
-    padding: 40px 25px;
+  .code-card {
+    padding: 30px 18px 25px;
   }
 
-  .happy-card h2 {
-    font-size: 37px;
+  .code-pusheen {
+    width: 100px;
   }
 
-  .happy-title-image {
-    width: 230px;
+  .code-inputs input {
+    width: 56px;
+    height: 65px;
   }
 
-  .photo-wall {
-    left: 50%;
-    top: 55%;
-    transform: translate(-50%, -50%) scale(.52);
+  .photo-collage {
+    height: 57vh;
   }
 
-  .photos-heading {
-    top: 8%;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    width: 100%;
-  }
-
-  .photos-heading h2 {
-    font-size: 38px;
+  .photo-collage img {
+    width: 30%;
+    height: 43%;
+    border-width: 5px;
+    border-bottom-width: 13px;
   }
 
   .letter {
-    max-height: 75vh;
-    padding: 30px;
-  }
-
-  .letter h2 {
-    font-size: 31px;
+    padding: 23px 18px;
   }
 
   .letter-text {
-    font-size: 15px;
+    font-size: 12px;
+    line-height: 1.4;
   }
 
-  .spongebob,
-  .cats-corner,
-  .pinkie-pie {
-    opacity: .7;
-    transform: scale(.7);
-  }
-
-  .present-title h2 {
-    font-size: 38px;
-  }
-
-  .present-stage {
-    height: 430px;
-  }
-
-  .ring-reveal h2 {
-    font-size: 32px;
-  }
-
-  .ring-reveal p {
-    width: 85vw;
-    font-size: 15px;
-  }
-
-  .cake-content h2 {
-    font-size: 40px;
+  .letter-text p {
+    margin-bottom: 9px;
   }
 
   .cake {
-    transform: scale(.65);
-  }
-
-  .final-content h1 {
-    font-size: 52px;
-  }
-
-  .final-content h2 {
-    width: 85vw;
-    font-size: 19px;
+    transform: scale(.85);
   }
 
 }
