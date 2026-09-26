@@ -1,1 +1,621 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Для Кіри 💗</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+
+  <audio id="music" loop>
+    <source src="Happy birthday meow meow .mp3" type="audio/mpeg">
+  </audio>
+
+  <div id="petals"></div>
+
+  <!-- КОД -->
+  <section class="scene code-scene" id="codeScene">
+    <div class="code-decoration decoration-one"></div>
+    <div class="code-decoration decoration-two"></div>
+
+    <div class="code-box">
+      <p class="tiny-title">маленький секрет</p>
+      <h1>Введи код</h1>
+      <p class="code-subtitle">тільки для тебе</p>
+
+      <div class="code-inputs">
+        <input maxlength="1" inputmode="numeric" class="code-input" autofocus>
+        <input maxlength="1" inputmode="numeric" class="code-input">
+        <input maxlength="1" inputmode="numeric" class="code-input">
+      </div>
+
+      <p class="code-error" id="codeError"></p>
+    </div>
+  </section>
+
+
+  <!-- САЛЮТ -->
+  <section class="scene fireworks-scene" id="fireworksScene">
+    <div class="fireworks" id="fireworks"></div>
+
+    <div class="birthday-picture birthday-picture-pusheen">
+      <img src="Без названия45_20260923132322.png" alt="">
+    </div>
+
+    <div class="firework-text">
+      <p>цей день починається тільки для тебе</p>
+    </div>
+
+    <img class="top-rainbow" src="Без названия45_20260923132615.png" alt="">
+    <img class="side-balloons" src="Без названия45_20260923132637.png" alt="">
+  </section>
+
+
+  <!-- ДАТА -->
+  <section class="scene date-scene">
+    <div class="date-top-picture">
+      <img src="Без названия45_20260926100133.png" alt="">
+    </div>
+
+    <div class="date-content">
+      <p class="small-label">особливий день</p>
+      <h2>У цей день народилася<br>найкраща дівчинка</h2>
+
+      <div class="calendar">
+        <div class="calendar-header">
+          <span>ЖОВТЕНЬ</span>
+          <span>2026</span>
+        </div>
+
+        <div class="weekdays">
+          <span>ПН</span>
+          <span>ВТ</span>
+          <span>СР</span>
+          <span>ЧТ</span>
+          <span>ПТ</span>
+          <span>СБ</span>
+          <span>НД</span>
+        </div>
+
+        <div class="days">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+          <span>6</span>
+          <span>7</span>
+          <span>8</span>
+          <span>9</span>
+          <span class="birthday-day">10</span>
+          <span>11</span>
+          <span>12</span>
+          <span>13</span>
+          <span>14</span>
+          <span>15</span>
+          <span>16</span>
+          <span>17</span>
+          <span>18</span>
+          <span>19</span>
+          <span>20</span>
+          <span>21</span>
+          <span>22</span>
+          <span>23</span>
+          <span>24</span>
+          <span>25</span>
+          <span>26</span>
+          <span>27</span>
+          <span>28</span>
+          <span>29</span>
+          <span>30</span>
+          <span>31</span>
+        </div>
+      </div>
+
+      <p class="date-caption">10 жовтня 2026 року</p>
+    </div>
+  </section>
+
+
+  <!-- HAPPY BIRTHDAY -->
+  <section class="scene happy-scene">
+    <img class="happy-title-image" src="Без названия45_20260923133026.png" alt="">
+    <img class="hello-kitty" src="Без названия45_20260923133159.png" alt="">
+
+    <div class="happy-card">
+      <p>Кіруся</p>
+      <h2>сьогодні твій день</h2>
+      <span>і він має бути таким же яскравим, як ти</span>
+    </div>
+
+    <img class="pinkie-pie" src="Без названия45_20260923132427.png" alt="">
+  </section>
+
+
+  <!-- ФОТО -->
+  <section class="scene photos-scene">
+
+    <img class="cats-corner" src="Без названия45_20260923134228.png" alt="">
+
+    <div class="photos-heading">
+      <span>наша маленька історія</span>
+      <h2>Наші моменти</h2>
+    </div>
+
+    <div class="photo-wall">
+
+      <div class="photo photo-1">
+        <img src="Untitled14_20260920175147.png" alt="">
+      </div>
+
+      <div class="photo photo-2">
+        <img src="Untitled14_20260920175208.png" alt="">
+      </div>
+
+      <div class="photo photo-3">
+        <img src="Untitled14_20260920175508.png" alt="">
+      </div>
+
+      <div class="photo photo-4">
+        <img src="Untitled14_20260920175543.png" alt="">
+      </div>
+
+      <div class="photo photo-5">
+        <img src="Untitled14_20260920175623.png" alt="">
+      </div>
+
+      <div class="photo photo-6">
+        <img src="Untitled14_20260920175658.png" alt="">
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ТЕКСТ -->
+  <section class="scene letter-scene">
+
+    <img class="spongebob" src="Без названия45_20260923133508.png" alt="">
+
+    <div class="letter">
+      <div class="letter-top">
+        <span>для тебе</span>
+        <span>♡</span>
+      </div>
+
+      <h2>Кіруся, з днем народження!</h2>
+
+      <div class="letter-text">
+
+        <p>
+          Ми познайомилися у школі, і я навіть не думала, що з того моменту
+          ми так добре зійдемося. А спілкуємося ми вже з 3 вересня 2021 року 🥹
+        </p>
+
+        <p>
+          Мені дуже подобається, що ти ідеально підходиш мені по вайбу.
+          З тобою можна сміятися з якоїсь повної дурниці, обговорювати все
+          підряд і просто бути собою. Я дуже ціную нашу дружбу і всі наші
+          приколи та моменти разом
+        </p>
+
+        <p>
+          Я хочу побажати тобі побільше хороших друзів, щоб поруч завжди були
+          люди, з якими тобі комфортно і весело. Бажаю тобі ніколи не сваритися
+          з рідними та друзями, завжди бути здоровою і займатися саме тим,
+          що тобі подобається
+        </p>
+
+        <p>
+          Нехай у тебе буде багато щасливих моментів, крутих спогадів і
+          приводів усміхатися. Сподіваюся, що ми ще дуже багато всього разом
+          переживемо і на нас чекає купа нових приколів 😭💗
+        </p>
+
+        <p class="final-letter">
+          З днем народження, Кірочка! Я тебе дуже люблю і дуже ціную нашу дружбу 🫶
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ПОДАРУНКИ -->
+  <section class="scene presents-scene">
+
+    <div class="present-title">
+      <span>для тебе є дещо особливе</span>
+      <h2>Відкрий подарунок</h2>
+    </div>
+
+    <div class="present-stage">
+
+      <div class="present-box" id="presentBox">
+
+        <div class="present-lid">
+          <div class="ribbon-horizontal"></div>
+        </div>
+
+        <div class="present-body">
+          <div class="ribbon-vertical"></div>
+        </div>
+
+      </div>
+
+      <div class="present-message" id="presentMessage"></div>
+
+    </div>
+
+    <button class="present-button" id="presentButton">
+      відкрити
+    </button>
+
+    <div class="ring-reveal" id="ringReveal">
+
+      <div class="ring">
+        <div class="ring-band"></div>
+        <div class="ring-stone"></div>
+      </div>
+
+      <h2>Це кільце для тебе</h2>
+
+      <div class="bouquet">
+        <div class="flower flower-a"></div>
+        <div class="flower flower-b"></div>
+        <div class="flower flower-c"></div>
+        <div class="flower flower-d"></div>
+        <div class="stem stem-a"></div>
+        <div class="stem stem-b"></div>
+        <div class="stem stem-c"></div>
+      </div>
+
+      <p>
+        Хоч ми й знаходимося на відстані, я все одно хочу подарувати тобі
+        цей букетик і кільце
+      </p>
+
+      <strong>Дякую тобі за те, що ти є</strong>
+
+    </div>
+  </section>
+
+
+  <!-- СВІЧКИ -->
+  <section class="scene cake-scene">
+
+    <div class="cake-decoration"></div>
+
+    <div class="cake-content">
+      <p class="small-label">і наостанок</p>
+      <h2>Задуй свічки</h2>
+      <p class="candle-hint" id="candleHint">Натисни на екран</p>
+    </div>
+
+    <div class="cake" id="cake">
+
+      <div class="candle candle-one">
+        <div class="flame"></div>
+      </div>
+
+      <div class="candle candle-two">
+        <div class="flame"></div>
+      </div>
+
+      <div class="candle candle-three">
+        <div class="flame"></div>
+      </div>
+
+      <div class="cake-top"></div>
+      <div class="cake-middle"></div>
+      <div class="cake-bottom"></div>
+
+    </div>
+
+    <div class="wish-text" id="wishText">
+      <span>♡</span>
+      <h2>Нехай цей рік буде незабутнім</h2>
+    </div>
+  </section>
+
+
+  <!-- ФІНАЛ -->
+  <section class="scene final-scene">
+
+    <div class="final-confetti"></div>
+
+    <img class="final-balloons" src="Без названия45_20260923132637.png" alt="">
+
+    <div class="final-content">
+      <p>і ось ми дійшли до кінця</p>
+
+      <h1>З днем народження,<br>Кіро!</h1>
+
+      <div class="final-line"></div>
+
+      <h2>Я тебе люблю і дуже ціную нашу дружбу</h2>
+
+      <span>♡</span>
+    </div>
+
+  </section>
+
+
+  <script>
+    const music = document.getElementById("music");
+
+    /* КОД */
+
+    const inputs = document.querySelectorAll(".code-input");
+    const error = document.getElementById("codeError");
+    const codeScene = document.getElementById("codeScene");
+    const fireworksScene = document.getElementById("fireworksScene");
+
+    inputs.forEach((input, index) => {
+
+      input.addEventListener("input", () => {
+
+        input.value = input.value.replace(/\D/g, "");
+
+        if (input.value && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+
+        checkCode();
+
+      });
+
+      input.addEventListener("keydown", (event) => {
+
+        if (
+          event.key === "Backspace" &&
+          !input.value &&
+          index > 0
+        ) {
+          inputs[index - 1].focus();
+        }
+
+      });
+
+    });
+
+    function checkCode() {
+
+      const code = Array.from(inputs)
+        .map(input => input.value)
+        .join("");
+
+      if (code.length !== 3) return;
+
+      if (code === "123") {
+
+        music.volume = 0.35;
+        music.play().catch(() => {});
+
+        codeScene.classList.add("code-complete");
+
+        setTimeout(() => {
+          fireworksScene.classList.add("active");
+          createFireworks();
+
+          setTimeout(() => {
+            document.querySelector(".date-scene").scrollIntoView({
+              behavior: "smooth"
+            });
+          }, 4000);
+
+        }, 1000);
+
+      } else {
+
+        error.textContent = "Неправильний код";
+
+        inputs.forEach(input => {
+          input.classList.add("wrong");
+        });
+
+        setTimeout(() => {
+
+          inputs.forEach(input => {
+            input.value = "";
+            input.classList.remove("wrong");
+          });
+
+          inputs[0].focus();
+          error.textContent = "";
+
+        }, 700);
+
+      }
+
+    }
+
+
+    /* САЛЮТ */
+
+    function createFireworks() {
+
+      const container = document.getElementById("fireworks");
+
+      for (let i = 0; i < 18; i++) {
+
+        setTimeout(() => {
+
+          const firework = document.createElement("div");
+          firework.className = "firework";
+
+          firework.style.left =
+            Math.random() * 90 + 5 + "%";
+
+          firework.style.top =
+            Math.random() * 65 + 10 + "%";
+
+          const colors = [
+            "#ff4f91",
+            "#ffd34e",
+            "#6edcff",
+            "#a875ff",
+            "#ffffff"
+          ];
+
+          firework.style.setProperty(
+            "--firework-color",
+            colors[Math.floor(Math.random() * colors.length)]
+          );
+
+          container.appendChild(firework);
+
+          setTimeout(() => {
+            firework.remove();
+          }, 1800);
+
+        }, i * 230);
+
+      }
+
+    }
+
+
+    /* ПОДАРУНКИ */
+
+    const presentButton = document.getElementById("presentButton");
+    const presentBox = document.getElementById("presentBox");
+    const presentMessage = document.getElementById("presentMessage");
+    const ringReveal = document.getElementById("ringReveal");
+
+    let presentStep = 0;
+
+    const presentMessages = [
+      "тут щось є...",
+      "ще один подарунок",
+      "ще трішки...",
+      "майже..."
+    ];
+
+    presentButton.addEventListener("click", () => {
+
+      presentStep++;
+
+      if (presentStep <= 4) {
+
+        presentBox.classList.add("opening");
+
+        setTimeout(() => {
+          presentBox.classList.remove("opening");
+          presentBox.classList.add("smaller-" + presentStep);
+        }, 600);
+
+        presentMessage.textContent =
+          presentMessages[presentStep - 1];
+
+        presentMessage.classList.add("show");
+
+        setTimeout(() => {
+          presentMessage.classList.remove("show");
+        }, 1200);
+
+      }
+
+      if (presentStep === 4) {
+
+        setTimeout(() => {
+
+          presentBox.classList.add("hidden");
+          presentButton.classList.add("hidden");
+          ringReveal.classList.add("show");
+
+        }, 900);
+
+      }
+
+    });
+
+
+    /* СВІЧКИ */
+
+    const cake = document.getElementById("cake");
+    const candles = document.querySelectorAll(".candle");
+    const candleHint = document.getElementById("candleHint");
+    const wishText = document.getElementById("wishText");
+
+    let candlesBlown = false;
+
+    candles.forEach(candle => {
+
+      candle.addEventListener("click", (event) => {
+
+        event.stopPropagation();
+
+        if (!candle.classList.contains("blown")) {
+
+          candle.classList.add("blown");
+
+        }
+
+      });
+
+    });
+
+    cake.addEventListener("click", () => {
+
+      if (candlesBlown) return;
+
+      candlesBlown = true;
+
+      candleHint.textContent = "♡";
+
+      candles.forEach((candle, index) => {
+
+        setTimeout(() => {
+          candle.classList.add("blown");
+        }, index * 650);
+
+      });
+
+      setTimeout(() => {
+        wishText.classList.add("show");
+      }, 2300);
+
+    });
+
+
+    /* ЛЕПЕСТКИ */
+
+    const petals = document.getElementById("petals");
+
+    function createPetal() {
+
+      const petal = document.createElement("span");
+
+      petal.className = "petal";
+
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.animationDuration =
+        7 + Math.random() * 8 + "s";
+
+      petal.style.animationDelay =
+        Math.random() * 3 + "s";
+
+      petals.appendChild(petal);
+
+      setTimeout(() => {
+        petal.remove();
+      }, 16000);
+
+    }
+
+    for (let i = 0; i < 18; i++) {
+      createPetal();
+    }
+
+    setInterval(createPetal, 900);
+
+  </script>
+
+</body>
+</html>
