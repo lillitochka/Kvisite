@@ -9,249 +9,165 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #ffd9ec;
 }
 
 body {
   font-family: Arial, sans-serif;
-  color: #24151d;
+  color: #291721;
   touch-action: manipulation;
 }
 
-.site {
+.page {
   position: relative;
   width: 100%;
   height: 100vh;
   height: 100dvh;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 20% 20%, #fff 0 4%, transparent 5%),
-    radial-gradient(circle at 80% 70%, #fff 0 3%, transparent 4%),
-    linear-gradient(135deg, #ffd9ec, #ffeef7 45%, #dff7ff);
-}
-
-
-/* =========================
-   СЦЕНЫ
-========================= */
-
-.scene {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
   overflow: hidden;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-
-  transform: scale(1.04);
-
-  transition:
-    opacity 1s ease,
-    transform 1.2s ease,
-    visibility 1s ease;
-}
-
-.scene.active {
   opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: scale(1);
+  transition: opacity .9s ease;
+}
+
+.page-leaving {
+  opacity: 0;
 }
 
 
-/* =========================
-   ДЕКОР
-========================= */
+/* ДЕКОР */
 
 .decor {
-  position: fixed;
-  z-index: 20;
+  position: absolute;
   pointer-events: none;
+  z-index: 10;
 }
 
-.decor img {
+.decor img,
+.page > img {
   display: block;
   width: 100%;
   height: auto;
 }
 
-.decor-rainbow {
-  top: -20px;
+.rainbow {
+  width: 120px;
+  top: -10px;
   left: 50%;
-  width: 130px;
-  transform: translateX(-50%) rotate(-4deg);
+  transform: translateX(-50%);
 }
 
-.decor-pinkie {
-  left: -5px;
-  bottom: 15px;
-  width: 110px;
-  transform: rotate(-8deg);
-}
-
-.decor-balloons {
-  right: -10px;
-  top: 30%;
-  width: 115px;
-  transform: rotate(5deg);
-}
-
-.decor-sponge {
-  left: -10px;
-  top: 20%;
-  width: 105px;
+.pinkie {
+  width: 100px;
+  left: 5px;
+  bottom: 10px;
   transform: rotate(-7deg);
 }
 
-.decor-cats {
+.balloons {
+  width: 110px;
   right: -5px;
-  bottom: 5px;
-  width: 120px;
-  transform: rotate(8deg);
+  top: 25%;
 }
 
 
-/* =========================
-   КОД
-========================= */
+/* КОД */
+
+.code-page {
+  background:
+    radial-gradient(circle at 20% 20%, white 0 4%, transparent 5%),
+    linear-gradient(135deg, #ffd6e9, #fff0f8, #dff7ff);
+}
 
 .code-card {
   width: min(88%, 430px);
-  padding: 45px 25px 38px;
+  padding: 35px 25px;
 
   text-align: center;
 
-  background: rgba(255,255,255,.82);
-  border: 3px solid #fff;
+  background: rgba(255,255,255,.9);
+  border: 3px solid white;
   border-radius: 35px;
 
-  box-shadow:
-    0 20px 60px rgba(255,80,160,.18),
-    0 5px 20px rgba(0,0,0,.08);
+  box-shadow: 0 20px 60px rgba(255,70,150,.2);
 
-  animation: cardAppear 1s ease;
+  animation: appear 1s ease;
 }
 
 .code-pusheen {
-  width: 125px;
-  max-height: 130px;
-  object-fit: contain;
-  margin-bottom: 10px;
-
-  animation: floating 3s ease-in-out infinite;
+  width: 115px !important;
+  margin: 0 auto 10px;
+  animation: float 3s infinite ease-in-out;
 }
 
-.small-title,
-.date-small,
-.gift-title {
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-size: 11px;
-  font-weight: 800;
+.eyebrow {
   color: #ff4fa3;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 .code-card h1 {
   margin-top: 8px;
-  font-size: clamp(34px, 9vw, 54px);
+  font-size: clamp(38px, 10vw, 55px);
   font-weight: 900;
 }
 
-.code-hint {
+.subtext {
   margin-top: 8px;
-  color: #8b6878;
+  color: #8e6b7c;
 }
 
 .code-inputs {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-top: 30px;
+  margin-top: 28px;
 }
 
 .code-inputs input {
-  width: 62px;
-  height: 72px;
+  width: 60px;
+  height: 70px;
 
-  border: 3px solid #ff9bca;
-  border-radius: 20px;
+  border: 3px solid #ff9acb;
+  border-radius: 19px;
 
-  background: #fff;
   outline: none;
+  background: white;
 
   text-align: center;
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 900;
-
   color: #ff4fa3;
-
-  transition: .2s;
 }
 
 .code-inputs input:focus {
   border-color: #ff4fa3;
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(255,79,163,.2);
 }
 
 .wrong {
   height: 18px;
-  margin-top: 13px;
-  opacity: 0;
+  margin-top: 12px;
   color: #e34b79;
   font-size: 13px;
+  opacity: 0;
 }
 
 .wrong.show {
   opacity: 1;
 }
 
-.shake {
-  animation: shake .35s ease;
-}
 
+/* САЛЮТ */
 
-/* =========================
-   САЛЮТ
-========================= */
-
-#fireworksScene {
+.fireworks-page {
   background:
-    radial-gradient(circle at center, #26315e 0, #17152f 55%, #090817 100%);
+    radial-gradient(circle at center, #303969, #16152d 55%, #080713);
   color: white;
-}
-
-.birthday-img {
-  position: absolute;
-  width: min(75%, 390px);
-  max-height: 170px;
-  object-fit: contain;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: birthdayFloat 3s ease-in-out infinite;
-}
-
-.pusheen-big {
-  position: absolute;
-  width: 130px;
-  top: 6%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-#fireworksScene h2 {
-  position: absolute;
-  bottom: 17%;
-  font-size: 28px;
-  animation: pulse 1.5s ease-in-out infinite;
 }
 
 .firework {
@@ -260,43 +176,83 @@ body {
   height: 7px;
   border-radius: 50%;
   background: white;
-  opacity: 0;
+  animation: boom 2.3s infinite;
 }
 
 .f1 {
-  left: 18%;
-  top: 30%;
-  animation: boom 2.2s infinite .1s;
+  left: 17%;
+  top: 28%;
 }
 
 .f2 {
   right: 20%;
-  top: 25%;
-  animation: boom 2.2s infinite .5s;
+  top: 23%;
+  animation-delay: .4s;
 }
 
 .f3 {
-  left: 32%;
-  top: 55%;
-  animation: boom 2.4s infinite .8s;
+  left: 30%;
+  top: 60%;
+  animation-delay: .8s;
 }
 
 .f4 {
-  right: 33%;
+  right: 30%;
   top: 58%;
-  animation: boom 2.1s infinite 1s;
+  animation-delay: 1.1s;
 }
 
 .f5 {
   left: 50%;
-  top: 20%;
-  animation: boom 2.3s infinite 1.3s;
+  top: 18%;
+  animation-delay: 1.4s;
+}
+
+.f6 {
+  right: 8%;
+  bottom: 25%;
+  animation-delay: 1.7s;
+}
+
+.firework-pusheen {
+  position: absolute;
+  width: 125px !important;
+  top: 7%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.birthday-img {
+  position: absolute;
+  width: min(78%, 400px) !important;
+  max-height: 170px;
+  object-fit: contain;
+  top: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.firework-text {
+  position: absolute;
+  bottom: 16%;
+  font-size: 30px;
+  animation: pulse 1.5s infinite;
 }
 
 
-/* =========================
-   ДАТА
-========================= */
+/* ДАТА */
+
+.date-page {
+  background: linear-gradient(135deg, #ffe0ef, #fff, #e4f8ff);
+}
+
+.date-decoration {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px !important;
+}
 
 .date-content {
   width: min(90%, 450px);
@@ -306,48 +262,26 @@ body {
 .date-content h1 {
   margin: 12px 0 22px;
   font-size: clamp(25px, 7vw, 42px);
-  line-height: 1.08;
-  font-weight: 900;
-}
-
-.top-picture {
-  position: absolute;
-  top: 15px;
-  left: 50%;
-  width: 100px;
-  max-height: 80px;
-  object-fit: contain;
-  transform: translateX(-50%);
+  line-height: 1.05;
 }
 
 .calendar {
-  width: min(100%, 370px);
-  margin: auto;
+  width: 100%;
   padding: 18px;
 
+  background: rgba(255,255,255,.93);
   border-radius: 25px;
-  background: rgba(255,255,255,.9);
 
-  box-shadow: 0 15px 50px rgba(255,90,160,.2);
+  box-shadow: 0 20px 50px rgba(255,80,160,.17);
 }
 
-.calendar-head {
+.calendar-title {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-
-  padding: 0 5px 12px;
+  padding-bottom: 12px;
 
   color: #ff4fa3;
   font-weight: 900;
-}
-
-.calendar-head span {
-  font-size: 20px;
-}
-
-.calendar-head b {
-  font-size: 14px;
 }
 
 .weekdays,
@@ -358,8 +292,8 @@ body {
 }
 
 .weekdays {
-  margin-bottom: 8px;
-  color: #a17a8c;
+  margin-bottom: 7px;
+  color: #a37b8e;
   font-size: 10px;
   font-weight: 900;
 }
@@ -367,157 +301,161 @@ body {
 .days span,
 .days i,
 .days strong {
-  position: relative;
+  height: 31px;
 
   display: flex;
   align-items: center;
   justify-content: center;
-
-  height: 31px;
 
   font-size: 12px;
   font-style: normal;
 }
 
 .days strong {
+  position: relative;
   color: white;
   z-index: 1;
 }
 
 .days strong::before {
   content: "";
+
   position: absolute;
   width: 34px;
   height: 34px;
-  border: 3px solid #ff4d72;
+
+  border: 3px solid #ff4f70;
   border-radius: 50%;
+
   z-index: -1;
 }
 
 
-/* =========================
-   ФОТО
-========================= */
+/* ФОТО */
 
-#photosScene {
+.photos-page {
   flex-direction: column;
+  background: linear-gradient(135deg, #ffe0ef, #fff5fb, #ddf7ff);
 }
 
-#photosScene h1 {
+.photos-page h1 {
   position: relative;
   z-index: 5;
-  margin-bottom: 15px;
 
-  font-size: clamp(32px, 9vw, 55px);
-  font-weight: 900;
+  margin-bottom: 12px;
+
+  font-size: clamp(35px, 9vw, 55px);
   color: #ff4fa3;
-
-  animation: titlePop .8s ease;
 }
 
-.hello-kitty {
-  width: 100px;
-  max-height: 90px;
-  object-fit: contain;
-  margin-bottom: 5px;
+.kitty-top {
+  width: 90px !important;
+  margin-bottom: 2px;
+  animation: float 3s infinite ease-in-out;
+}
 
-  animation: floating 3s infinite;
+.photos-corner {
+  position: absolute;
+  right: 3px;
+  bottom: 5px;
+  width: 100px !important;
 }
 
 .photo-collage {
   position: relative;
-
-  width: min(92vw, 570px);
-  height: min(64vh, 500px);
+  width: min(92vw, 560px);
+  height: min(62vh, 480px);
 }
 
 .photo-collage img {
   position: absolute;
 
-  width: 31%;
-  height: 44%;
+  width: 34%;
+  height: 45%;
 
   object-fit: cover;
 
-  border: 7px solid white;
-  border-bottom-width: 18px;
+  border: 6px solid white;
+  border-bottom-width: 17px;
 
-  box-shadow: 0 12px 30px rgba(0,0,0,.17);
+  box-shadow: 0 12px 30px rgba(0,0,0,.18);
 
-  transition: .5s;
+  animation: photoAppear .8s both;
 }
 
 .photo-collage img:nth-child(1) {
-  left: 2%;
-  top: 3%;
+  left: 1%;
+  top: 4%;
   transform: rotate(-7deg);
 }
 
 .photo-collage img:nth-child(2) {
-  left: 35%;
+  left: 33%;
   top: 0;
   transform: rotate(4deg);
+  animation-delay: .12s;
 }
 
 .photo-collage img:nth-child(3) {
-  right: 2%;
+  right: 1%;
   top: 5%;
   transform: rotate(8deg);
+  animation-delay: .24s;
 }
 
 .photo-collage img:nth-child(4) {
   left: 8%;
-  bottom: 2%;
+  bottom: 1%;
   transform: rotate(6deg);
+  animation-delay: .36s;
 }
 
 .photo-collage img:nth-child(5) {
-  left: 35%;
-  bottom: 0;
-  transform: rotate(-5deg);
-}
-
-.photo-collage img:nth-child(6) {
-  right: 5%;
-  bottom: 4%;
-  transform: rotate(-8deg);
+  right: 9%;
+  bottom: 2%;
+  transform: rotate(-7deg);
+  animation-delay: .48s;
 }
 
 
-/* =========================
-   ПОДАРУНОК
-========================= */
+/* ПОДАРОК */
 
-.gift-scene {
+.gift-page {
   flex-direction: column;
   text-align: center;
+  background: linear-gradient(135deg, #ffd8eb, #fff, #e0f7ff);
 }
 
-.gift-wrap {
+.gift-decoration {
+  position: absolute;
+  left: 5px;
+  bottom: 15px;
+  width: 100px !important;
+}
+
+.gift {
   position: relative;
 
   width: 180px;
   height: 180px;
 
-  margin-top: 35px;
+  margin-top: 30px;
 
   cursor: pointer;
 
-  transition:
-    transform .8s cubic-bezier(.2,.8,.2,1);
+  transition: transform .8s cubic-bezier(.2,.8,.2,1);
 }
 
 .gift-box {
   position: absolute;
 
-  width: 150px;
-  height: 120px;
-
   left: 15px;
   bottom: 10px;
 
-  border-radius: 8px;
+  width: 150px;
+  height: 120px;
 
+  border-radius: 8px;
   background: #ff4fa3;
 
   box-shadow: 0 15px 30px rgba(255,79,163,.3);
@@ -528,30 +466,29 @@ body {
 
   z-index: 3;
 
-  width: 175px;
-  height: 35px;
-
   left: 2px;
   top: 30px;
 
-  border-radius: 8px;
+  width: 175px;
+  height: 35px;
 
+  border-radius: 8px;
   background: #ff78b8;
 
   transition: .6s;
 }
 
-.gift-wrap.opened .gift-lid {
+.gift.opened .gift-lid {
   transform: translateY(-25px) rotate(-4deg);
 }
 
 .ribbon-v {
   position: absolute;
 
+  left: 61px;
+
   width: 28px;
   height: 100%;
-
-  left: 61px;
 
   background: #ffe66d;
 }
@@ -559,28 +496,22 @@ body {
 .ribbon-h {
   position: absolute;
 
+  top: 40px;
+
   width: 100%;
   height: 23px;
-
-  top: 40px;
 
   background: #ffe66d;
 }
 
-.gift-hint {
+#giftHint {
   margin-top: 20px;
   color: #87596d;
   font-weight: 700;
+  transition: .4s;
 }
 
-.gift-sponge {
-  position: absolute;
-  left: 10px;
-  bottom: 20px;
-  width: 100px;
-}
-
-.ring-reveal {
+.ring-content {
   position: absolute;
 
   width: 90%;
@@ -591,69 +522,59 @@ body {
   opacity: 0;
   transform: scale(.5);
 
+  transition: 1s;
   pointer-events: none;
-
-  transition: 1s ease;
 }
 
-.ring-reveal.show {
+.ring-content.show {
   opacity: 1;
   transform: scale(1);
 }
 
-.ring-placeholder {
+.ring {
   font-size: 90px;
-
-  animation:
-    ringFloat 2s ease-in-out infinite;
+  animation: float 2s infinite ease-in-out;
 }
 
-.ring-reveal h2 {
-  font-size: 30px;
+.ring-content h1 {
   color: #ff4fa3;
+  font-size: 30px;
 }
 
-.ring-reveal p {
+.ring-content p {
   margin-top: 12px;
-  line-height: 1.45;
-  font-size: 16px;
+  line-height: 1.5;
 }
 
-.bouquet-placeholder {
-  margin-top: 15px;
+.bouquet {
+  margin: 12px;
   font-size: 65px;
 }
 
-.thanks {
+.ring-content b {
   color: #ff4fa3;
-  font-weight: 800;
 }
 
 
-/* =========================
-   ЛИСТ
-========================= */
+/* ПИСЬМО */
 
-.letter-scene {
-  padding: 25px;
+.letter-page {
+  padding: 20px;
+  background: linear-gradient(135deg, #ffe0ef, #fff, #e0f6ff);
 }
 
 .letter {
-  width: min(90%, 650px);
+  width: min(92%, 650px);
   max-height: 88vh;
-
-  overflow: hidden;
 
   padding: 28px 25px;
 
-  background: rgba(255,255,255,.94);
+  overflow: hidden;
 
+  background: rgba(255,255,255,.94);
   border-radius: 30px;
 
-  box-shadow:
-    0 20px 60px rgba(255,70,150,.2);
-
-  text-align: left;
+  box-shadow: 0 20px 60px rgba(255,70,150,.2);
 }
 
 .letter h1 {
@@ -661,22 +582,16 @@ body {
 
   text-align: center;
 
+  color: #ff4fa3;
   font-size: clamp(25px, 7vw, 39px);
   line-height: 1.05;
-
-  color: #ff4fa3;
 }
 
-.letter-text {
+.letter p {
+  margin-bottom: 12px;
+
   font-size: clamp(12px, 3.2vw, 15px);
   line-height: 1.45;
-
-  max-height: 66vh;
-  overflow: hidden;
-}
-
-.letter-text p {
-  margin-bottom: 12px;
 }
 
 .letter-end {
@@ -688,28 +603,31 @@ body {
 .letter-kitty {
   position: absolute;
 
-  top: 15px;
-  right: 20px;
+  top: 10px;
+  right: 10px;
 
-  width: 90px;
+  width: 90px !important;
 }
 
 
-/* =========================
-   ТОРТИК
-========================= */
+/* ТОРТ */
 
-.cake-scene {
+.cake-page {
   flex-direction: column;
+  background: linear-gradient(135deg, #ffe0ef, #fff, #e0f7ff);
+}
+
+.cake-decoration {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  width: 100px !important;
 }
 
 .cake {
   position: relative;
-
   width: 270px;
   height: 230px;
-
-  margin-top: 30px;
 }
 
 .cake-body {
@@ -723,14 +641,13 @@ body {
 
   border-radius: 15px 15px 25px 25px;
 
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #ff8ebf 0,
-      #ff8ebf 30px,
-      #ffb9d7 30px,
-      #ffb9d7 60px
-    );
+  background: repeating-linear-gradient(
+    90deg,
+    #ff8ebf 0,
+    #ff8ebf 30px,
+    #ffb9d7 30px,
+    #ffb9d7 60px
+  );
 
   box-shadow: 0 15px 25px rgba(255,79,163,.2);
 }
@@ -747,16 +664,13 @@ body {
   border-radius: 50%;
 
   background: #fff4fa;
-
   border: 6px solid #ff9aca;
-
-  z-index: 2;
 }
 
 .candles {
   position: absolute;
 
-  z-index: 4;
+  z-index: 5;
 
   left: 48px;
   bottom: 145px;
@@ -765,7 +679,6 @@ body {
 
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
 }
 
 .candle {
@@ -776,14 +689,13 @@ body {
 
   border-radius: 5px;
 
-  background:
-    repeating-linear-gradient(
-      135deg,
-      #fff 0,
-      #fff 7px,
-      #ff65ad 7px,
-      #ff65ad 14px
-    );
+  background: repeating-linear-gradient(
+    135deg,
+    white 0,
+    white 7px,
+    #ff65ad 7px,
+    #ff65ad 14px
+  );
 }
 
 .flame {
@@ -808,72 +720,52 @@ body {
 
 .flame.blown {
   opacity: 0;
-  transform:
-    translateY(-20px)
-    scale(.2)
-    rotate(45deg);
-
+  transform: translateY(-20px) scale(.2) rotate(45deg);
   transition: .9s;
 }
 
-.cake-scene h2 {
-  margin-top: 25px;
+.cake-page h2 {
+  margin-top: 20px;
 
-  font-size: clamp(20px, 6vw, 30px);
   color: #ff4fa3;
+  font-size: 25px;
 
-  animation: pulse 1.6s infinite;
-}
-
-.cake-balloons {
-  position: absolute;
-
-  right: -5px;
-  top: 20px;
-
-  width: 110px;
+  animation: pulse 1.5s infinite;
 }
 
 
-/* =========================
-   ФІНАЛ
-========================= */
+/* ФИНАЛ */
 
-.final-scene {
+.final-page {
   flex-direction: column;
   text-align: center;
 
   background:
-    radial-gradient(circle at 50% 30%, #fff 0, #ffe1ef 40%, #ffc2df 100%);
+    radial-gradient(circle at center, white, #ffe0ef 55%, #ffc5df);
 }
 
 .final-pinkie {
-  width: 115px;
-  margin-bottom: 10px;
-
-  animation: floating 3s infinite;
+  width: 110px !important;
+  animation: float 3s infinite ease-in-out;
 }
 
 .final-birthday {
-  width: min(75%, 400px);
+  width: min(75%, 400px) !important;
   max-height: 130px;
   object-fit: contain;
-
-  margin-bottom: 15px;
+  margin: 10px 0;
 }
 
-.final-scene h1 {
-  font-size: clamp(38px, 10vw, 70px);
-  line-height: .98;
+.final-page h1 {
   color: #ff4fa3;
-  font-weight: 900;
+  font-size: clamp(40px, 10vw, 70px);
+  line-height: .98;
 
-  animation: titlePop 1s ease;
+  animation: appear 1s ease;
 }
 
-.final-scene p {
-  margin-top: 15px;
-
+.final-page p {
+  margin-top: 16px;
   font-size: 23px;
   font-weight: 800;
 
@@ -881,14 +773,12 @@ body {
 }
 
 
-/* =========================
-   АНИМАЦИИ
-========================= */
+/* АНИМАЦИИ */
 
-@keyframes cardAppear {
+@keyframes appear {
   from {
     opacity: 0;
-    transform: translateY(30px) scale(.95);
+    transform: translateY(25px) scale(.95);
   }
 
   to {
@@ -897,8 +787,8 @@ body {
   }
 }
 
-@keyframes floating {
-  0%,100% {
+@keyframes float {
+  0%, 100% {
     transform: translateY(0);
   }
 
@@ -907,30 +797,8 @@ body {
   }
 }
 
-@keyframes birthdayFloat {
-  0%,100% {
-    transform: translateX(-50%) rotate(-2deg);
-  }
-
-  50% {
-    transform: translateX(-50%) rotate(2deg) translateY(-8px);
-  }
-}
-
-@keyframes titlePop {
-  from {
-    opacity: 0;
-    transform: scale(.7);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 @keyframes pulse {
-  0%,100% {
+  0%, 100% {
     transform: scale(1);
   }
 
@@ -940,7 +808,7 @@ body {
 }
 
 @keyframes shake {
-  0%,100% {
+  0%, 100% {
     transform: translateX(0);
   }
 
@@ -953,23 +821,14 @@ body {
   }
 }
 
-@keyframes ringFloat {
-  0%,100% {
-    transform: translateY(0) rotate(-5deg);
-  }
-
-  50% {
-    transform: translateY(-12px) rotate(5deg);
-  }
-}
-
-@keyframes flame {
+@keyframes photoAppear {
   from {
-    transform: rotate(42deg) scale(1);
+    opacity: 0;
+    transform: scale(.7) rotate(0);
   }
 
   to {
-    transform: rotate(48deg) scale(1.12);
+    opacity: 1;
   }
 }
 
@@ -984,18 +843,19 @@ body {
   20% {
     opacity: 1;
     transform: scale(1);
+
     box-shadow:
-      0 -80px 0 white,
-      57px -57px 0 #ff75bd,
-      80px 0 0 white,
-      57px 57px 0 #ffe36d,
-      0 80px 0 white,
-      -57px 57px 0 #8fe6ff,
-      -80px 0 0 white,
-      -57px -57px 0 #ff75bd;
+      0 -75px 0 white,
+      53px -53px 0 #ff75bd,
+      75px 0 0 white,
+      53px 53px 0 #ffe36d,
+      0 75px 0 white,
+      -53px 53px 0 #8fe6ff,
+      -75px 0 0 white,
+      -53px -53px 0 #ff75bd;
   }
 
-  60% {
+  65% {
     opacity: 1;
     transform: scale(1.1);
   }
@@ -1007,39 +867,25 @@ body {
 
 }
 
+@keyframes flame {
 
-/* =========================
-   МОБИЛЬНЫЕ
-========================= */
+  from {
+    transform: rotate(42deg) scale(1);
+  }
+
+  to {
+    transform: rotate(48deg) scale(1.12);
+  }
+
+}
+
+
+/* ТЕЛЕФОН */
 
 @media (max-width: 600px) {
 
-  .decor-rainbow {
-    width: 95px;
-  }
-
-  .decor-pinkie {
-    width: 80px;
-  }
-
-  .decor-balloons {
-    width: 85px;
-  }
-
-  .decor-sponge {
-    width: 75px;
-  }
-
-  .decor-cats {
-    width: 85px;
-  }
-
   .code-card {
-    padding: 30px 18px 25px;
-  }
-
-  .code-pusheen {
-    width: 100px;
+    padding: 30px 18px;
   }
 
   .code-inputs input {
@@ -1052,22 +898,17 @@ body {
   }
 
   .photo-collage img {
-    width: 30%;
+    width: 31%;
     height: 43%;
-    border-width: 5px;
-    border-bottom-width: 13px;
   }
 
   .letter {
     padding: 23px 18px;
   }
 
-  .letter-text {
+  .letter p {
     font-size: 12px;
     line-height: 1.4;
-  }
-
-  .letter-text p {
     margin-bottom: 9px;
   }
 
